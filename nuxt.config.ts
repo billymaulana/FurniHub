@@ -1,19 +1,22 @@
-import splashScreen from './components/splashscreen/splashscreen'
+import splashScreen from './app/components/SplashScreen/index'
+import { pwa } from './app/config/pwa'
+import { appDescription } from './app/constants/index'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
-  ssr: true,
   modules: [
     '@vueuse/nuxt',
     '@nuxt/fonts',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    '@vite-pwa/nuxt',
     'nuxt-typed-router',
     '@nuxt/icon',
     '@nuxt/eslint',
+    '@nuxt/image',
   ],
 
   experimental: {
+    payloadExtraction: false,
     renderJsonPayloads: true,
     typedPages: true,
   },
@@ -28,19 +31,49 @@ export default defineNuxtConfig({
         target: 'esnext',
       },
     },
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
   },
 
   app: {
-    rootAttrs: {
-      id: '__furnihub',
+    head: {
+      viewport: 'width=device-width,initial-scale=1',
+      link: [
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+      ],
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: appDescription },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'msapplication-TileColor', content: '#3aa39f' },
+        { name: 'theme-color', content: '3aa39f' },
+      ],
+      noscript: [
+        { children: 'JavaScript is required' },
+      ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
 
-  
+  pwa,
+
   devtools: {
-    enabled: true,
+    enabled: false,
+  },
+
+  devServer: {
+    loadingTemplate: (data) => {
+      return splashScreen({
+        ...data,
+        appName: 'FurniHub',
+      })
+    },
   },
 
   eslint: {
@@ -49,15 +82,27 @@ export default defineNuxtConfig({
     },
   },
 
+  future: {
+    compatibilityVersion: 4,
+  },
+
   fonts: {
     families: [
-      { name: 'Roboto', provider: 'google' },
+      { name: 'Darker Grotesque', provider: 'google' },
+      { name: 'Raleway', provider: 'google' },
     ],
   },
+
+  image: {
+    dir: 'assets/images',
+    inject: true,
+    quality: 80,
+  },
+
   icon: {
-    provider: 'iconify',
     componentName: 'NuxtIcon',
   },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -67,4 +112,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: '2024-04-03',
 })

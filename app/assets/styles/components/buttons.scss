@@ -1,0 +1,33 @@
+.btn{
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  outline: 0;
+  padding:8px 20px;
+  letter-spacing: 0.2px;
+  line-height: 28px;
+  text-decoration: none;
+  transition: all 0.35s ease-in-out;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.btn-primary{
+  background-color: $green-verdigris;
+  color:$white;
+  border:1px solid $green-verdigris;
+  &:hover, &:focus{
+    background-color: darken($green-verdigris, 10%);
+    border-color:darken($green-verdigris, 10%);
+    cursor:pointer
+  } 
+  &:disabled{
+    &:hover{
+      cursor: not-allowed;
+    }
+  }
+}
