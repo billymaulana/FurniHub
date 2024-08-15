@@ -9,19 +9,21 @@
 
       <ul class="navbar-nav">
         <li class="navbar-item">
-          <NuxtLink to="/" class="navbar-item-link"> SHOP </NuxtLink>
+          <NuxtLink to="/shop" class="navbar-item-link"> SHOP </NuxtLink>
         </li>
         <li class="navbar-item">
-          <NuxtLink to="/" class="navbar-item-link"> COLLECTIVE </NuxtLink>
+          <NuxtLink to="/collective" class="navbar-item-link" disabled>
+            COLLECTIVE
+          </NuxtLink>
         </li>
         <li class="navbar-item">
-          <NuxtLink to="/" class="navbar-item-link"> ABOUT US </NuxtLink>
+          <NuxtLink to="/about" class="navbar-item-link" disabled> ABOUT US </NuxtLink>
         </li>
         <li class="navbar-item">
-          <NuxtLink to="/" class="navbar-item-link"> CONTACT </NuxtLink>
+          <NuxtLink to="/contact" class="navbar-item-link" disabled> CONTACT </NuxtLink>
         </li>
         <li class="navbar-item">
-          <NuxtLink to="/" class="navbar-item-link"> FAQ'S </NuxtLink>
+          <NuxtLink to="/faq" class="navbar-item-link" disabled> FAQ'S </NuxtLink>
         </li>
       </ul>
 
@@ -48,6 +50,7 @@
 .header {
   position: relative;
   width: 100%;
+  border-bottom: 1px solid $grey;
   .navbar {
     background-color: $white;
     width: 100%;
@@ -61,7 +64,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 90rem;
+    max-width: 80rem;
     margin: 0 auto;
 
     .navbar-brand {
@@ -92,6 +95,15 @@
           &:focus {
             color: $green-verdigris;
             transition: color 0.35s ease-in-out;
+          }
+
+          &.router-link-active,
+          &.router-link-exact-active {
+            color: $green-verdigris;
+          }
+
+          &[disabled] {
+            color: $grey-french !important;
           }
         }
       }

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="layout-wrapper">
     <BaseNavbar />
-    <main class="layout-wrapper">
+    <main class="layout">
       <slot />
     </main>
     <BaseFooter />

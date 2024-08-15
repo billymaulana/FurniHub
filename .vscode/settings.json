@@ -43,6 +43,5 @@
 
   "iconify.annotations": true,
   "iconify.inplace": true,
-  "vue3snippets.enable-compile-vue-file-on-did-save-code": true,
-  "nuxt.isNuxtApp": false
+  "nuxt.isNuxtApp": true
 }

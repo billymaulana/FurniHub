@@ -1,4 +1,4 @@
-import splashScreen from './app/components/SplashScreen/index'
+import splashScreen from './app/components/splashscreen'
 import { pwa } from './app/config/pwa'
 import { appDescription } from './app/constants/index'
 

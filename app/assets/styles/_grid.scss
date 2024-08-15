@@ -1,28 +1,89 @@
-.container {
+// Grid variables
+$gutter-x: 2rem;
+$gutter-y: 0;
+
+// Container breakpoints
+$container-breakpoints: (
+  576px: 540px,
+  768px: 720px,
+  992px: 960px,
+  1200px: 1140px,
+  1400px: 1280px
+);
+
+// Mixin for container
+@mixin container($max-width) {
   width: 100%;
+  padding-right: calc($gutter-x * 1);
+  padding-left: calc($gutter-x * 1);
   margin-right: auto;
   margin-left: auto;
-  max-width: 90rem;
-  @media (min-width: 640px) {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  @media (min-width: 1024px) {
-    padding-right: 2rem;
-    padding-left: 2rem;
+  max-width: $max-width;
+}
+
+// Apply container mixin with different breakpoints
+.container {
+  @include container(100%);
+}
+
+@each $breakpoint, $max-width in $container-breakpoints {
+  @media (min-width: $breakpoint) {
+    .container {
+      @include container($max-width);
+    }
   }
 }
 
-.row{
+// Row styling
+.row {
   display: flex;
   flex-wrap: wrap;
-  >*{
-    flex-shrink:0;
-    width:100%;
-    max-width:100%;
-    padding-right:calc(1.5rem * .5);
-    padding-left:calc(1.5rem * .5);
+  margin-top: calc(-1 * $gutter-y);
+  margin-right: calc(-1 * $gutter-x);
+  margin-left: calc(-1 * $gutter-x);
+
+  > * {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc($gutter-x * 1);
+    padding-left: calc($gutter-x * 1);
+    margin-top: $gutter-y;
   }
 }
 
+// Mixin for columns
+@mixin col($width) {
+  flex: 0 0 auto;
+  width: $width;
+}
 
+// Column sizes
+$col-sizes: (
+  auto: auto,
+  1: 8.33333333%,
+  2: 16.66666667%,
+  3: 25%,
+  4: 33.33333333%,
+  5: 41.66666667%,
+  6: 50%,
+  7: 58.33333333%,
+  8: 66.66666667%,
+  9: 75%,
+  10: 83.33333333%,
+  11: 91.66666667%,
+  12: 100%
+);
+
+// Apply column mixin with different sizes
+@each $col, $width in $col-sizes {
+  .col-#{$col} {
+    @include col($width);
+  }
+}
+
+// Default column styling
+.col {
+  flex: 1 0 0%;
+}
