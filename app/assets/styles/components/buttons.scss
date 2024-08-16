@@ -21,14 +21,14 @@ button{
 
 
 .btn-primary{
-  background-color: $green-verdigris;
+  background-color: $green-celadon;
   color:$white;
-  border:1px solid $green-verdigris;
+  border:1px solid $green-celadon;
   white-space: nowrap;
   min-width: 100px;
   &:hover, &:focus{
-    background-color: darken($green-verdigris, 10%);
-    border-color:darken($green-verdigris, 10%);
+    background-color: darken($green-celadon, 10%);
+    border-color:darken($green-celadon, 10%);
     cursor:pointer
   } 
   &:disabled{
@@ -40,20 +40,20 @@ button{
 
 .btn-secondary{
   background-color: $white-flash;
-  color:$green-bean;
+  color:$green-myrtle;
   border:1px solid $white-flash;
   white-space: nowrap;
   min-width: 100px;
   .iconify{
-    color:$green-bean;
+    color:$green-myrtle;
   }
   &:hover, &:focus{
     background-color: darken($white-flash, 10%);
     border-color:darken($white-flash, 10%);
-    color:$green-bean;
+    color:$green-myrtle;
     cursor:pointer
     .iconfiy{
-      color:$green-bean;
+      color:$green-myrtle;
     }
   } 
   &:disabled{

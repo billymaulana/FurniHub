@@ -331,7 +331,7 @@ function continuePayment() {
           border-radius: 8px;
         }
         &.active {
-          border: 1px solid $green-verdigris;
+          border: 1px solid $green-celadon;
         }
       }
     }

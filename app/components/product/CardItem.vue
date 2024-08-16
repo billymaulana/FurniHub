@@ -118,11 +118,11 @@
       font-size: 18px;
       line-height: 22px;
       font-weight: 600;
-      color: $green-verdigris;
+      color: $green-celadon;
     }
 
     .btn-add-cart {
-      background: $green-verdigris;
+      background: $green-celadon;
       border-radius: 50%;
       width: 2rem;
       height: 2rem;
@@ -139,7 +139,7 @@
       &:focus {
         cursor: pointer;
         transition: all 0.5s ease-in;
-        background-color: darken($green-verdigris, 10%);
+        background-color: darken($green-celadon, 10%);
       }
     }
   }
