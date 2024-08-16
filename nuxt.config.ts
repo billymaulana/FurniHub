@@ -1,4 +1,4 @@
-import splashScreen from './app/components/splashscreen'
+import welcomescreen from './app/components/welcomescreen'
 import { pwa } from './app/config/pwa'
 import { appDescription } from './app/constants/index'
 
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
 
   devServer: {
     loadingTemplate: (data) => {
-      return splashScreen({
+      return welcomescreen({
         ...data,
         appName: 'FurniHub',
       })
