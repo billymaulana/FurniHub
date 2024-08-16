@@ -1,5 +1,16 @@
 <script setup lang="ts">
 import { navMenu } from '~/constants'
+
+const router = useRouter()
+
+function checkPaths(path1: string, segment: string): boolean {
+  const normalizedPath1: string = path1.replace(/\/+$/, '').toLowerCase()
+  const normalizedSegment: string = segment.toLowerCase()
+
+  const parts1: string[] = normalizedPath1.split('/').filter(Boolean)
+
+  return parts1.includes(normalizedSegment)
+}
 </script>
 
 <template>
@@ -12,27 +23,30 @@ import { navMenu } from '~/constants'
 
         <ul v-if="navMenu.length > 0" class="navbar-nav">
           <li v-for="(item, index) in navMenu" :key="index" class="navbar-item">
-            <NuxtLink :to="{ path: item.pathLink }" class="navbar-item-link" :disabled="item.disabled">
+            <NuxtLink
+              :to="{ path: item.pathLink }" class="navbar-item-link" :disabled="item.disabled"
+              :active="checkPaths(router.currentRoute.value.fullPath, item.pathName)"
+            >
               {{ item.pathName }}
             </NuxtLink>
           </li>
-        </ul>
 
-        <div class="navbar-action">
-          <button class="btn-wishlist cursor-pointer">
-            <NuxtIcon name="mynaui:search" size="1.75em" />
-          </button>
-          <button class="btn-wishlist cursor-pointer">
-            <NuxtIcon name="mynaui:heart" size="1.75em" />
-          </button>
-          <button class="btn-cart cursor-pointer">
-            <NuxtIcon name="mynaui:cart" size="1.75em" class="icon-cart" />
-            <span class="total-cart">0</span>
-          </button>
-          <button class="btn-profile cursor-pointer">
-            <NuxtIcon name="mynaui:user" size="1.75em" />
-          </button>
-        </div>
+          <div class="navbar-action">
+            <button class="btn-wishlist cursor-pointer">
+              <NuxtIcon name="mynaui:search" size="1.75em" />
+            </button>
+            <button class="btn-wishlist cursor-pointer">
+              <NuxtIcon name="mynaui:heart" size="1.75em" />
+            </button>
+            <button class="btn-cart cursor-pointer">
+              <NuxtIcon name="mynaui:cart" size="1.75em" class="icon-cart" />
+              <span class="total-cart">0</span>
+            </button>
+            <button class="btn-profile cursor-pointer">
+              <NuxtIcon name="mynaui:user" size="1.75em" />
+            </button>
+          </div>
+        </ul>
       </nav>
     </div>
   </header>
@@ -86,13 +100,12 @@ import { navMenu } from '~/constants'
           font-weight: 600;
           &:hover,
           &:focus {
-            color: $green-verdigris;
+            color: $green-celadon;
             transition: color 0.35s ease-in-out;
           }
 
-          &.router-link-active,
-          &.router-link-exact-active {
-            color: $green-verdigris;
+          &[active='true'] {
+            color: $green-celadon;
           }
 
           &[disabled] {
