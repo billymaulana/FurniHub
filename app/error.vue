@@ -1,16 +1,16 @@
 <script setup>
 const props = defineProps({
   error: Object,
-});
+})
 
-const message = computed(() => String(props.error?.message || ""));
+const message = computed(() => String(props.error?.message || ''))
 const is404 = computed(
-  () => props.error?.statusCode === 404 || message.value?.includes("404")
-);
-const isDev = import.meta.dev;
+  () => props.error?.statusCode === 404 || message.value?.includes('404'),
+)
+const isDev = import.meta.dev
 
 function handleError() {
-  return clearError({ redirect: "/" });
+  return clearError({ redirect: '/' })
 }
 </script>
 
@@ -27,7 +27,9 @@ function handleError() {
       <div v-if="isDev" class="error-details">
         {{ error }}
       </div>
-      <button class="btn btn-primary" @click="handleError">Go Back</button>
+      <button class="btn btn-primary" @click="handleError">
+        Go Back
+      </button>
     </div>
   </NuxtLayout>
 </template>
@@ -44,6 +46,7 @@ function handleError() {
   .error-title {
     font-weight: bold;
     font-size: 3rem;
+    margin-bottom: 20px;
   }
   .error-details {
     width: 33.33%;
