@@ -1,48 +1,40 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { navMenu } from '~/constants'
+</script>
 
 <template>
   <header class="header">
-    <nav class="navbar">
-      <NuxtLink class="navbar-brand" to="/">
-        <NuxtImg class="navbar-brand-logo" src="/logo-furnihub.svg" alt="Logo FurniHub" />
-      </NuxtLink>
+    <div class="container">
+      <nav class="navbar">
+        <NuxtLink class="navbar-brand" to="/">
+          <NuxtImg class="navbar-brand-logo" src="/logo-furnihub.svg" alt="Logo FurniHub" />
+        </NuxtLink>
 
-      <ul class="navbar-nav">
-        <li class="navbar-item">
-          <NuxtLink to="/shop" class="navbar-item-link"> SHOP </NuxtLink>
-        </li>
-        <li class="navbar-item">
-          <NuxtLink to="/collective" class="navbar-item-link" disabled>
-            COLLECTIVE
-          </NuxtLink>
-        </li>
-        <li class="navbar-item">
-          <NuxtLink to="/about" class="navbar-item-link" disabled> ABOUT US </NuxtLink>
-        </li>
-        <li class="navbar-item">
-          <NuxtLink to="/contact" class="navbar-item-link" disabled> CONTACT </NuxtLink>
-        </li>
-        <li class="navbar-item">
-          <NuxtLink to="/faq" class="navbar-item-link" disabled> FAQ'S </NuxtLink>
-        </li>
-      </ul>
+        <ul v-if="navMenu.length > 0" class="navbar-nav">
+          <li v-for="(item, index) in navMenu" :key="index" class="navbar-item">
+            <NuxtLink :to="{ path: item.pathLink }" class="navbar-item-link" :disabled="item.disabled">
+              {{ item.pathName }}
+            </NuxtLink>
+          </li>
+        </ul>
 
-      <div class="navbar-action">
-        <button class="btn-search cursor-pointer">
-          <NuxtIcon name="mynaui:search" size="1.75em" />
-        </button>
-        <button class="btn-wishlist cursor-pointer">
-          <NuxtIcon name="mynaui:heart" size="1.75em" />
-        </button>
-        <button class="btn-cart cursor-pointer">
-          <NuxtIcon name="mynaui:cart" size="1.75em" class="icon-cart" />
-          <span class="total-cart">0</span>
-        </button>
-        <button class="btn-profile cursor-pointer">
-          <NuxtIcon name="mynaui:user" size="1.75em" />
-        </button>
-      </div>
-    </nav>
+        <div class="navbar-action">
+          <button class="btn-wishlist cursor-pointer">
+            <NuxtIcon name="mynaui:search" size="1.75em" />
+          </button>
+          <button class="btn-wishlist cursor-pointer">
+            <NuxtIcon name="mynaui:heart" size="1.75em" />
+          </button>
+          <button class="btn-cart cursor-pointer">
+            <NuxtIcon name="mynaui:cart" size="1.75em" class="icon-cart" />
+            <span class="total-cart">0</span>
+          </button>
+          <button class="btn-profile cursor-pointer">
+            <NuxtIcon name="mynaui:user" size="1.75em" />
+          </button>
+        </div>
+      </nav>
+    </div>
   </header>
 </template>
 
@@ -59,7 +51,6 @@
     z-index: 50;
     backdrop-filter: blur(8px);
     margin-bottom: 0;
-    padding: $navbar-padding;
     height: $navbar-height;
     display: flex;
     justify-content: space-between;
@@ -85,6 +76,8 @@
       white-space: nowrap;
       .navbar-item {
         list-style: none;
+        margin: 0;
+        padding: 0;
         .navbar-item-link {
           font-size: 14px;
           line-height: 16px;
@@ -113,7 +106,7 @@
       justify-content: flex-end;
       display: flex;
       align-items: center;
-      gap: 0.375rem;
+      gap: 0.75rem;
 
       .btn-cart {
         position: relative;
@@ -130,7 +123,7 @@
           font-size: 8px;
           position: absolute;
           top: 0px;
-          right: 11px;
+          right: 6px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -146,6 +139,16 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .navbar-action {
+        display: none;
+      }
+    }
+    @media (max-width: 1024px) {
+      .navbar-nav {
+        display: none;
+      }
+    }
     @media (min-width: 1024px) {
       .navbar-brand,
       .navbar-nav,
