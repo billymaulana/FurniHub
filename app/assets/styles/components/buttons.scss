@@ -1,11 +1,16 @@
+button{
+  &:hover{
+    cursor: pointer;
+  }
+}
 .btn{
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   border-radius: 6px;
   outline: 0;
-  padding:12px 28px;
+  padding:8px 16px;
   letter-spacing: 0.2px;
-  line-height: 28px;
+  line-height: 24px;
   text-decoration: none;
   transition: all 0.35s ease-in-out;
   text-align: center;
@@ -14,14 +19,84 @@
   position: relative;
 }
 
+
 .btn-primary{
   background-color: $green-verdigris;
   color:$white;
   border:1px solid $green-verdigris;
+  white-space: nowrap;
+  min-width: 100px;
   &:hover, &:focus{
     background-color: darken($green-verdigris, 10%);
     border-color:darken($green-verdigris, 10%);
     cursor:pointer
+  } 
+  &:disabled{
+    &:hover{
+      cursor: not-allowed;
+    }
+  }
+}
+
+.btn-secondary{
+  background-color: $white-flash;
+  color:$green-bean;
+  border:1px solid $white-flash;
+  white-space: nowrap;
+  min-width: 100px;
+  .iconify{
+    color:$green-bean;
+  }
+  &:hover, &:focus{
+    background-color: darken($white-flash, 10%);
+    border-color:darken($white-flash, 10%);
+    color:$green-bean;
+    cursor:pointer
+    .iconfiy{
+      color:$green-bean;
+    }
+  } 
+  &:disabled{
+    &:hover{
+      cursor: not-allowed;
+    }
+  }
+}
+
+.btn-secondary-2{
+  background-color: $white;
+  color:$white;
+  border:1px solid $grey-jet;
+  white-space: nowrap;
+  min-width: 100px;
+  &:hover, &:focus{
+    background-color: darken($grey-jet, 10%);
+    border-color:darken($grey-jet, 10%);
+    cursor:pointer
+  } 
+  &:disabled{
+    &:hover{
+      cursor: not-allowed;
+    }
+  }
+}
+
+.btn-outline-white{
+  background-color: $white;
+  color:$grey-cool;
+  border:1px solid $grey-platinum;
+  white-space: nowrap;
+  min-width: 100px;
+  .iconify{
+    color:$grey-cool;
+  }
+  &:hover, &:focus{
+    color:$black-chinese;
+    border-color:$black-chinese;
+    cursor:pointer
+    .iconify{
+      color:$black-chinese;
+    }
   } 
   &:disabled{
     &:hover{

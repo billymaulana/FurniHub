@@ -3,6 +3,90 @@
     cursor:pointer;
   }
 }
+
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
 .justify-between{
   justify-content: space-between;
 }
+.justify-center{
+  justify-content: center;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-decoration-none{
+  text-decoration: none;
+}
+
+/* margin & padding */
+
+@mixin spacing($property, $suffix) {
+  @for $i from 0 through 5 {
+    $value: 0;
+    
+    @if $i == 1 {
+      $value: 0.25rem;
+    } @else if $i == 2 {
+      $value: 0.5rem;
+    } @else if $i == 3 {
+      $value: 1rem;
+    } @else if $i == 4 {
+      $value: 1.5rem;
+    } @else if $i == 5 {
+      $value: 3rem;
+    }
+
+    .#{$property}-#{$i} {
+      #{$suffix}: $value !important;
+    }
+  }
+}
+
+@mixin spacing-double($property, $suffix1, $suffix2) {
+  @for $i from 0 through 5 {
+    $value: 0;
+    
+    @if $i == 1 {
+      $value: 0.25rem;
+    } @else if $i == 2 {
+      $value: 0.5rem;
+    } @else if $i == 3 {
+      $value: 1rem;
+    } @else if $i == 4 {
+      $value: 1.5rem;
+    } @else if $i == 5 {
+      $value: 3rem;
+    }
+
+    .#{$property}-#{$i} {
+      #{$suffix1}: $value !important;
+      #{$suffix2}: $value !important;
+    }
+  }
+}
+
+@include spacing('mt', 'margin-top');
+@include spacing('mb', 'margin-bottom');
+@include spacing('ml', 'margin-left');
+@include spacing('mr', 'margin-right');
+@include spacing('pt', 'padding-top');
+@include spacing('pb', 'padding-bottom');
+@include spacing('pl', 'padding-left');
+@include spacing('pr', 'padding-right');
+
+@include spacing-double('py', 'padding-top', 'padding-bottom');
+@include spacing-double('px', 'padding-left', 'padding-right');
+@include spacing-double('my', 'margin-top', 'margin-bottom');
+@include spacing-double('mx', 'margin-left', 'margin-right');

@@ -1,89 +1,116 @@
+@use 'sass:math';
+
 // Grid variables
-$gutter-x: 2rem;
+$gutter-x: 1rem;
 $gutter-y: 0;
 
-// Container breakpoints
-$container-breakpoints: (
-  576px: 540px,
-  768px: 720px,
-  992px: 960px,
-  1200px: 1140px,
-  1400px: 1280px
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
 );
 
-// Mixin for container
-@mixin container($max-width) {
+$container-max-widths: (
+  'sm': 540px,
+  'md': 720px,
+  'lg': 960px,
+  'xl': 1140px,
+  'xxl': 1320px
+);
+
+
+// Base container styles
+.container,
+.container-fluid {
   width: 100%;
-  padding-right: calc($gutter-x * 1);
-  padding-left: calc($gutter-x * 1);
+  padding-right: calc($gutter-x * 0.5);
+  padding-left: calc($gutter-x * 0.5);
   margin-right: auto;
   margin-left: auto;
-  max-width: $max-width;
+  max-width: 80rem;
 }
 
-// Apply container mixin with different breakpoints
-.container {
-  @include container(100%);
-}
-
-@each $breakpoint, $max-width in $container-breakpoints {
-  @media (min-width: $breakpoint) {
-    .container {
-      @include container($max-width);
-    }
-  }
-}
-
-// Row styling
+// Base row styles
 .row {
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(-1 * $gutter-y);
-  margin-right: calc(-1 * $gutter-x);
-  margin-left: calc(-1 * $gutter-x);
+  margin-right: calc(-0.5 * $gutter-x);
+  margin-left: calc(-0.5 * $gutter-x);
 
   > * {
-    box-sizing: border-box;
     flex-shrink: 0;
     width: 100%;
     max-width: 100%;
-    padding-right: calc($gutter-x * 1);
-    padding-left: calc($gutter-x * 1);
+    padding-right: calc($gutter-x * 0.5);
+    padding-left: calc($gutter-x * 0.5);
     margin-top: $gutter-y;
   }
 }
 
-// Mixin for columns
-@mixin col($width) {
-  flex: 0 0 auto;
-  width: $width;
-}
-
-// Column sizes
-$col-sizes: (
-  auto: auto,
-  1: 8.33333333%,
-  2: 16.66666667%,
-  3: 25%,
-  4: 33.33333333%,
-  5: 41.66666667%,
-  6: 50%,
-  7: 58.33333333%,
-  8: 66.66666667%,
-  9: 75%,
-  10: 83.33333333%,
-  11: 91.66666667%,
-  12: 100%
-);
-
-// Apply column mixin with different sizes
-@each $col, $width in $col-sizes {
-  .col-#{$col} {
-    @include col($width);
+// Mixin for containers
+@mixin container($bp) {
+  @if map-has-key($container-max-widths, $bp) {
+    max-width: map-get($container-max-widths, $bp);
   }
 }
 
-// Default column styling
+// Mixin for columns
+@mixin col-sizes($prefix) {
+  @for $i from 1 through 12 {
+    .#{$prefix}-#{$i} {
+      width: #{math.div(100%, 12) * $i} !important;
+    }
+  }
+}
+
+// Mixin for display utilities
+@mixin display-utilities($prefix) {
+  .#{$prefix}-inline { display: inline !important; }
+  .#{$prefix}-inline-block { display: inline-block !important; }
+  .#{$prefix}-block { display: block !important; }
+  .#{$prefix}-grid { display: grid !important; }
+  .#{$prefix}-inline-grid { display: inline-grid !important; }
+  .#{$prefix}-table { display: table !important; }
+  .#{$prefix}-table-row { display: table-row !important; }
+  .#{$prefix}-table-cell { display: table-cell !important; }
+  .#{$prefix}-flex { display: flex !important; }
+  .#{$prefix}-inline-flex { display: inline-flex !important; }
+  .#{$prefix}-none { display: none !important; }
+}
+
+
+// Applying mixins for each breakpoint
+@each $bp, $min-width in $breakpoints {
+  @media (min-width: $min-width) {
+    .container-#{$bp} {
+      @include container($bp);
+    }
+    @include col-sizes('col-#{$bp}');
+    @include display-utilities('d-#{$bp}');
+  }
+}
+
+// Default column and order classes
 .col {
   flex: 1 0 0%;
 }
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+// Applying default column sizes
+@include col-sizes('col');
+
+// Default order classes
+.order-first { order: -1 !important; }
+.order-0 { order: 0 !important; }
+.order-1 { order: 1 !important; }
+.order-2 { order: 2 !important; }
+.order-3 { order: 3 !important; }
+.order-4 { order: 4 !important; }
+.order-5 { order: 5 !important; }
+.order-last { order: 6 !important; }
