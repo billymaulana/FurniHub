@@ -94,7 +94,6 @@ export default defineNuxtConfig({
   },
 
   image: {
-    dir: 'assets/images',
     inject: true,
     quality: 80,
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="card-product">
     <div class="product-bg">
-      <NuxtImg class="product-bg-img" src="/product/chair-1.svg" alt="furnihub product" />
+      <NuxtImg class="product-bg-img" src="/images/product/chair-1.svg" alt="furnihub product" />
       <button class="btn-add-wishlist">
         <NuxtIcon name="mynaui:heart" size="1.5em" class="icon-wishlist" />
       </button>

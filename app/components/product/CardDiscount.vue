@@ -9,7 +9,7 @@
       </button>
     </div>
     <div>
-      <NuxtImg class="product-card-discount-img" src="/product/chair-3.svg" alt="FurniHub Chair Discount" />
+      <NuxtImg class="product-card-discount-img" src="/images/product/chair-3.svg" alt="FurniHub Chair Discount" />
     </div>
   </div>
 </template>

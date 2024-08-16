@@ -20,10 +20,10 @@
               Fresh Designs, <span class="text-primary">Just Arrived</span>
             </h3>
             <div class="vertical-arrow">
-              <NuxtImg class="vertical-arrow-img" src="/illustrator/long-arrow.svg" alt="FurniHub Arrow" />
+              <NuxtImg class="vertical-arrow-img" src="/images/illustrator/long-arrow.svg" alt="FurniHub Arrow" />
             </div>
             <div class="new-product">
-              <NuxtImg class="new-product-img" src="/product/chair-1.svg" alt="FurniHub New Product" />
+              <NuxtImg class="new-product-img" src="/images/product/chair-1.svg" alt="FurniHub New Product" />
             </div>
             <p class="new-product-desc">
               "Unveil the latest trends in home decor with our newest furniture collection. Only at FurniHub."
@@ -203,7 +203,7 @@
     }
   }
   @media (min-width: 1280px) {
-    background-image: url('~/assets/images/illustrator/hero-accent.svg');
+    background-image: url('/images/illustrator/hero-accent.svg');
     background-size: 90%;
     background-repeat: space;
     background-position: 100% -12vh;

@@ -7,7 +7,7 @@ import { navMenu } from '~/constants'
     <div class="container">
       <nav class="navbar">
         <NuxtLink class="navbar-brand" to="/">
-          <NuxtImg class="navbar-brand-logo" src="/logo-furnihub.svg" alt="Logo FurniHub" />
+          <NuxtImg class="navbar-brand-logo" src="/images/logo-furnihub.svg" alt="Logo FurniHub" />
         </NuxtLink>
 
         <ul v-if="navMenu.length > 0" class="navbar-nav">

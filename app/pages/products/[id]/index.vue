@@ -155,21 +155,21 @@ function continuePayment() {
             </div>
 
             <div class="product-images-wrapper">
-              <NuxtImg src="/product/chair-4.png" alt="FurniHub Product" class="product-images-main" />
+              <NuxtImg src="/images/product/chair-4.png" alt="FurniHub Product" class="product-images-main" />
             </div>
 
             <div class="product-img-thumbnail-wrapper">
               <div class="product-img-thumbnail active">
-                <NuxtImg class="product-img-thumbnail-item" src="/product/chair-4.png" alt="product-images-thumbnail" />
+                <NuxtImg class="product-img-thumbnail-item" src="/images/product/chair-4.png" alt="product-images-thumbnail" />
               </div>
               <div class="product-img-thumbnail">
-                <NuxtImg class="product-img-thumbnail-item" src="/product/chair-4.png" alt="product-images-thumbnail" />
+                <NuxtImg class="product-img-thumbnail-item" src="/images/product/chair-4.png" alt="product-images-thumbnail" />
               </div>
               <div class="product-img-thumbnail">
-                <NuxtImg class="product-img-thumbnail-item" src="/product/chair-4.png" alt="product-images-thumbnail" />
+                <NuxtImg class="product-img-thumbnail-item" src="/images/product/chair-4.png" alt="product-images-thumbnail" />
               </div>
               <div class="product-img-thumbnail">
-                <NuxtImg class="product-img-thumbnail-item" src="/product/chair-4.png" alt="product-images-thumbnail" />
+                <NuxtImg class="product-img-thumbnail-item" src="/images/product/chair-4.png" alt="product-images-thumbnail" />
               </div>
             </div>
           </div>
