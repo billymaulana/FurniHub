@@ -2,6 +2,8 @@
 import { navMenu } from '~/constants'
 
 const router = useRouter()
+const cartStore = useCartStore()
+const { totalItems } = storeToRefs(cartStore)
 
 function checkPaths(path1: string, segment: string): boolean {
   const normalizedPath1: string = path1.replace(/\/+$/, '').toLowerCase()
@@ -24,7 +26,7 @@ function checkPaths(path1: string, segment: string): boolean {
         <ul v-if="navMenu.length > 0" class="navbar-nav">
           <li v-for="(item, index) in navMenu" :key="index" class="navbar-item">
             <NuxtLink
-              :to="{ path: item.pathLink }" class="navbar-item-link" :disabled="item.disabled"
+              :to="{ path: item.pathLink }" class="navbar-item-link"
               :active="checkPaths(router.currentRoute.value.fullPath, item.pathName)"
             >
               {{ item.pathName }}
@@ -40,7 +42,7 @@ function checkPaths(path1: string, segment: string): boolean {
             </button>
             <button class="btn-cart cursor-pointer">
               <NuxtIcon name="mynaui:cart" size="1.75em" class="icon-cart" />
-              <span class="total-cart">0</span>
+              <span class="total-cart">{{ totalItems }}</span>
             </button>
             <button class="btn-profile cursor-pointer">
               <NuxtIcon name="mynaui:user" size="1.75em" />
@@ -104,7 +106,8 @@ function checkPaths(path1: string, segment: string): boolean {
             transition: color 0.35s ease-in-out;
           }
 
-          &[active='true'] {
+          &[active='true'],
+          &.router-link-active {
             color: $green-celadon;
           }
 
