@@ -4,7 +4,7 @@ export const appDescription = 'Discover premium furniture for every room at Furn
 export const navMenu = [
   { pathName: 'Home', pathLink: '/' },
   { pathName: 'Products', pathLink: '/products' },
-  { pathName: 'Collective', pathLink: '/collective', disabled: true },
-  { pathName: 'About', pathLink: '/about', disabled: true },
-  { pathName: 'Contact', pathLink: '/contact', disabled: true },
+  { pathName: 'Collective', pathLink: '/collective' },
+  { pathName: 'About', pathLink: '/about' },
+  { pathName: 'Contact', pathLink: '/contact' },
 ]

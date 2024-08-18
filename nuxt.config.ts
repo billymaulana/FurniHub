@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/fonts',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
     '@vite-pwa/nuxt',
     'nuxt-typed-router',
     '@nuxt/icon',
@@ -19,6 +18,10 @@ export default defineNuxtConfig({
     payloadExtraction: false,
     renderJsonPayloads: true,
     typedPages: true,
+  },
+
+  imports: {
+    autoImport: true,
   },
 
   css: [
@@ -100,6 +103,10 @@ export default defineNuxtConfig({
 
   icon: {
     componentName: 'NuxtIcon',
+  },
+
+  pinia: {
+    storesDirs: ['./app/stores/**'],
   },
 
   vite: {
