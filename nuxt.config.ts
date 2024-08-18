@@ -97,8 +97,6 @@ export default defineNuxtConfig({
   },
 
   image: {
-    provider: 'netlify',
-    domains: ['i.ibb.co.com'],
     inject: true,
     quality: 80,
   },
