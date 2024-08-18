@@ -26,6 +26,9 @@ button{
   border:1px solid $green-celadon;
   white-space: nowrap;
   min-width: 100px;
+  .iconify{
+    color:$white;
+  }
   &:hover, &:focus{
     background-color: darken($green-celadon, 10%);
     border-color:darken($green-celadon, 10%);
