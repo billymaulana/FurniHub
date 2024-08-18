@@ -2,13 +2,12 @@
 definePageMeta({
   title: 'products',
 })
-
 const breadcrumbsItems = ref([
   { pathName: 'Home', pathLink: '/' },
   { pathName: 'Products', pathLink: '/products' },
 ])
 
-const ddd = 4
+const { data: listProducts } = await getAllProducts()
 </script>
 
 <template>
@@ -26,6 +25,7 @@ const ddd = 4
           <h1 class="text-headline-large text-center mb-5">
             Discover The Best Furniture
           </h1>
+
           <div class="filter-box">
             <div class="category-filter">
               <div class="mb-2 fw-500 text-left">
@@ -54,25 +54,18 @@ const ddd = 4
             </div>
           </div>
         </div>
-        <div class="col-sm-12 col-md-3">
-          <NuxtLink :to="{ path: `/products/${ddd}` }" class="text-decoration-none">
-            <ProductCardItem />
-          </NuxtLink>
+      </div>
+
+      <div v-if="listProducts.products" class="row">
+        <div v-for="(item, index) in listProducts.products" :key="index" class="col-sm-12 col-md-3">
+          <ProductCardItem :items="item" />
         </div>
-        <div class="col-sm-12 col-md-3">
-          <ProductCardItem />
-        </div>
-        <div class="col-sm-12 col-md-3">
-          <ProductCardItem />
-        </div>
-        <div class="col-sm-12 col-md-3">
-          <ProductCardItem />
-        </div>
-        <div class="col-md-12">
-          <button class="btn-pagination">
-            Load More..
-          </button>
-        </div>
+      </div>
+
+      <div class="col-md-12">
+        <button class="btn-pagination">
+          Load More..
+        </button>
       </div>
     </div>
   </section>
@@ -119,17 +112,17 @@ const ddd = 4
 }
 
 .form-select {
-  border: 0;
   background: #f4f5f9;
   border-radius: 5px;
   color: black;
-  padding: 5px 11px;
-  width: 110px;
+  padding: 8px;
+  width: 100%;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.5px;
   outline: 0;
   box-shadow: none;
   margin: 0 20px 0 0;
+  border: 3px solid #f4f5f9;
 }
 </style>
