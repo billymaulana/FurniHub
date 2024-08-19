@@ -22,12 +22,11 @@ export interface Variant {
 
 export interface ApiResponse<T> {
   status: string
-  data: {
-    products: T
-  }
+  data: T
 }
 
-export interface CartItem {
-  product: Product
-  quantity: number
+export interface Category {
+  categoryId: number
+  categoryName: string
+  id: string
 }

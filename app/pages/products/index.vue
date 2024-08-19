@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Category, Product } from '~/types'
+
 definePageMeta({
   title: 'products',
 })
@@ -7,7 +9,36 @@ const breadcrumbsItems = ref([
   { pathName: 'Products', pathLink: '/products' },
 ])
 
-const { data: listProducts } = await getAllProducts()
+const selectedCategory = defineModel<number>({ default: 0 })
+const listProducts = ref<Product[]>([])
+const listCategory = ref<Category[]>([])
+const isLoading = ref<boolean>(false)
+const { data: categoriesData } = await getListCategory()
+listCategory.value = categoriesData.category ?? []
+
+const query = computed(() => selectedCategory.value === 0 ? '' : `?categoryId=${selectedCategory.value}`)
+
+async function fetchProducts() {
+  try {
+    isLoading.value = true
+    const { data } = await getAllProducts(query.value)
+    if (data) {
+      listProducts.value = data.products.length > 0 ? data.products : []
+    }
+    isLoading.value = false
+  }
+  catch (error) {
+    isLoading.value = false
+    listProducts.value = []
+    console.error('Failed to fetch products:', error)
+  }
+}
+
+watch(selectedCategory, () => {
+  fetchProducts()
+})
+
+await fetchProducts()
 </script>
 
 <template>
@@ -31,24 +62,9 @@ const { data: listProducts } = await getAllProducts()
               <div class="mb-2 fw-500 text-left">
                 Category :
               </div>
-              <select id="countries" class="form-select">
-                <option selected>
-                  All Product
-                </option>
-                <option value="chairs">
-                  Chairs
-                </option>
-                <option value="sofas">
-                  Sofas
-                </option>
-                <option value="tables">
-                  Tables
-                </option>
-                <option value="beds">
-                  Beds
-                </option>
-                <option value="accesories">
-                  Accesories
+              <select id="category" v-model="selectedCategory" name="category" class="form-select">
+                <option v-for="(item, index) in listCategory" :key="index" :value="item.categoryId">
+                  {{ item.categoryName }}
                 </option>
               </select>
             </div>
@@ -56,16 +72,27 @@ const { data: listProducts } = await getAllProducts()
         </div>
       </div>
 
-      <div v-if="listProducts.products" class="row">
-        <div v-for="(item, index) in listProducts.products" :key="index" class="col-sm-12 col-md-3">
-          <ProductCardItem :items="item" />
+      <div class="row">
+        <div v-if="isLoading" class="col-md-12 text-center">
+          <BaseSpinner />
         </div>
-      </div>
 
-      <div class="col-md-12">
-        <button class="btn-pagination">
-          Load More..
-        </button>
+        <div v-if="listProducts.length === 0 && !isLoading" class="col-md-12 text-center">
+          <h2 class="text-headline-large text-center mb-5">
+            PRODUCT NOT FOUND
+          </h2>
+        </div>
+
+        <template v-if="listProducts.length > 0 && !isLoading">
+          <div v-for="(item, index) in listProducts" :key="index" class="col-sm-12 col-md-3">
+            <ProductCardItem :items="item" />
+          </div>
+          <div class="col-md-12">
+            <button class="btn-pagination">
+              Load More..
+            </button>
+          </div>
+        </template>
       </div>
     </div>
   </section>
