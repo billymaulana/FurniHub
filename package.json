@@ -30,7 +30,7 @@
     "@vueuse/nuxt": "^11.0.0",
     "eslint": "^9.9.0",
     "eslint-plugin-format": "^0.1.2",
-    "nuxt": "^3.12.4",
+    "nuxt": "^3.16.0",
     "nuxt-typed-router": "^3.6.5",
     "pinia": "^2.2.2",
     "sass": "^1.77.8",
